@@ -1,13 +1,16 @@
+version: '2.4'
 services:
   frontend:
     build: .
     container_name: study-frontend
     restart: unless-stopped
     env_file:
-      - path: .env
-        required: false
+      - .env
     environment:
       VITE_API_URL: ${VITE_API_URL:-http://localhost:3000}
     ports:
       - "${FRONTEND_PORT:-8080}:80"
+
+
+
 

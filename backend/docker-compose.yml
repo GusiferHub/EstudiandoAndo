@@ -1,3 +1,4 @@
+version: '2.4'
 services:
   postgres:
     image: postgres:16-alpine
@@ -23,8 +24,7 @@ services:
       postgres:
         condition: service_healthy
     env_file:
-      - path: .env
-        required: false
+      - .env
     environment:
       PORT: ${PORT:-3000}
       NODE_ENV: ${NODE_ENV:-production}
@@ -38,3 +38,6 @@ services:
 
 volumes:
   postgres_data:
+
+
+
