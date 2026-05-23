@@ -10,7 +10,16 @@ if [ ! -f .env ]; then
   exit 1
 fi
 
-docker compose up -d --build
-docker compose ps
+if docker compose version >/dev/null 2>&1; then
+  COMPOSE="docker compose"
+elif command -v docker-compose >/dev/null 2>&1; then
+  COMPOSE="docker-compose"
+else
+  echo "No se encontro Docker Compose. Instala docker-compose o docker-compose-plugin."
+  exit 1
+fi
+
+$COMPOSE up -d --build
+$COMPOSE ps
 
 echo "Frontend listo. Abre la IP publica de esta VPS."
