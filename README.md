@@ -1,4 +1,4 @@
-# StudyLock
+# EstudiandoAndo
 
 App universitaria full stack para subir un PDF, generar un resumen y crear un quiz interactivo de aprendizaje con Gemini.
 
