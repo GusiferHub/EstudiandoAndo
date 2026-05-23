@@ -22,6 +22,7 @@ export function Quiz({ materialId, questions }) {
 
   const answeredCount = Object.keys(answers).length;
   const isComplete = answeredCount === questions.length;
+  const scoreClass = getScoreClass(result.correct);
 
   function handleAnswer(index, answer) {
     if (submitted) return;
@@ -40,7 +41,7 @@ export function Quiz({ materialId, questions }) {
   }
 
   return (
-    <form className="quiz-section" onSubmit={handleQuizSubmit}>
+    <form className="quiz-section info-card" onSubmit={handleQuizSubmit}>
       <div className="quiz-heading">
         <div>
           <h3>Quiz interactivo</h3>
@@ -52,7 +53,7 @@ export function Quiz({ materialId, questions }) {
       {submitted && (
         <div className="score-panel">
           <strong>Resultado: {result.correct}/{result.total}</strong>
-          <span>{result.correct} correctas y {result.incorrect} incorrectas</span>
+          <span className={scoreClass}>{result.correct} correctas y {result.incorrect} incorrectas</span>
         </div>
       )}
 
@@ -65,6 +66,7 @@ export function Quiz({ materialId, questions }) {
             onAnswer={handleAnswer}
             question={question}
             submitted={submitted}
+            unanswered={!Object.prototype.hasOwnProperty.call(answers, index)}
           />
         ))}
       </div>
@@ -73,7 +75,7 @@ export function Quiz({ materialId, questions }) {
         <button className="primary-button" disabled={!isComplete || submitted} type="submit">
           Enviar respuestas
         </button>
-        <button className="ghost-button" onClick={resetQuiz} type="button">
+        <button className="ghost-button reset-button" onClick={resetQuiz} type="button">
           <RotateCcw size={18} aria-hidden="true" />
           Reiniciar quiz
         </button>
@@ -84,4 +86,10 @@ export function Quiz({ materialId, questions }) {
       )}
     </form>
   );
+}
+
+function getScoreClass(score) {
+  if (score < 5) return 'score-low';
+  if (score < 9) return 'score-mid';
+  return 'score-high';
 }

@@ -10,19 +10,19 @@ export function StudyMaterial({ material, onDelete }) {
           <p>{material.originalFilename}</p>
           <h2>{material.summary.title}</h2>
         </div>
-        <button className="ghost-button" onClick={() => onDelete(material.id)} type="button">
+        <button className="ghost-button delete-button" onClick={() => onDelete(material.id)} type="button">
           <Trash2 size={18} aria-hidden="true" />
           Eliminar
         </button>
       </header>
 
-      <section className="summary-band">
+      <section className="summary-band info-card">
         <h3>Resumen</h3>
         <p>{material.summary.shortSummary}</p>
       </section>
 
       <div className="two-column">
-        <section>
+        <section className="info-card">
           <h3>Puntos clave</h3>
           <ul className="check-list">
             {material.summary.keyPoints.map((point) => (
@@ -34,7 +34,7 @@ export function StudyMaterial({ material, onDelete }) {
           </ul>
         </section>
 
-        <section>
+        <section className="info-card">
           <h3>Plan de estudio</h3>
           <ol className="study-plan">
             {material.summary.studyPlan.map((step) => (
