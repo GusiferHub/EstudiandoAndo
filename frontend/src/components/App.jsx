@@ -12,7 +12,7 @@ export function App() {
   const [error, setError] = useState('');
 
   const selectedMaterial = useMemo(() => {
-    return materials.find((material) => material.id === selectedId) ?? materials[0] ?? null;
+    return materials.find((material) => material.id === selectedId) ?? null;
   }, [materials, selectedId]);
 
   useEffect(() => {
@@ -23,7 +23,6 @@ export function App() {
     try {
       const data = await listStudyMaterials();
       setMaterials(data);
-      setSelectedId((current) => current ?? data[0]?.id ?? null);
     } catch (loadError) {
       setError(loadError.message);
     }
@@ -98,3 +97,4 @@ export function App() {
     </main>
   );
 }
+
