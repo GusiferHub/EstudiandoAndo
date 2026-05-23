@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, FileText, Loader2, UploadCloud, XCircle } from 'lucide-react';
+import { Loader2, UploadCloud, XCircle } from 'lucide-react';
 
 export function Sidebar({
   error,
@@ -14,9 +14,8 @@ export function Sidebar({
   return (
     <aside className="sidebar">
       <div className="brand">
-        <BookOpen size={28} aria-hidden="true" />
         <div>
-          <h1>Estudiando Ando</h1>
+          <h1>EstudiandoAndo</h1>
           <p>Sube un PDF y genera un material de estudio</p>
         </div>
       </div>
@@ -32,7 +31,7 @@ export function Sidebar({
           />
         </label>
         <button className="primary-button" type="submit" disabled={isLoading}>
-          {isLoading ? <Loader2 className="spin" size={18} aria-hidden="true" /> : <FileText size={18} aria-hidden="true" />}
+          {isLoading && <Loader2 className="spin" size={18} aria-hidden="true" />}
           {isLoading ? 'Generando...' : 'Genera el material :D'}
         </button>
       </form>
